@@ -6,13 +6,16 @@ import re
 
 
 class Product:
-    # FIXME: klasa powinna posiadać metodę inicjalizacyjną przyjmującą argumenty wyrażające nazwę produktu (typu str) i jego cenę (typu float) -- w takiej kolejności -- i ustawiającą atrybuty `name` (typu str) oraz `price` (typu float)
+    def __init__(self, name: str, price: float):
+        self.name: str = name
+        self.price: float = price
+    def __hash__(self):
+        hash_name = hash(self.name)
+        hash_price = hash(self.price)
+        return hash_name, hash_price
 
     def __eq__(self, other):
-        return None  # FIXME: zwróć odpowiednią wartość
-
-    def __hash__(self):
-        return hash((self.name, self.price))
+        return self.name == other.name, self.price == other.name
 
 
 class TooManyProductsFoundError(Exception):
