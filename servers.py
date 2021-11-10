@@ -10,13 +10,11 @@ class Product:
     def __init__(self, name: str, price: float) -> None:
         self.name = name
         self.price = price
-    def __init__(self, name: str, price: float):
-        self.name: str = name
-        self.price: float = price
+    def __eq__(self, other):
+        return self.name == other.name, self.price == other.name
     def __hash__(self):
-        hash_name = hash(self.name)
-        hash_price = hash(self.price)
-        return hash_name, hash_price
+        hash_product = hash(Product)
+        return hash_product
 
 
 
@@ -37,7 +35,7 @@ class Server(ABC):
         for x in self._get_products(n_letters):
             if re.match(symbols, x.name):
                 entries.append(x)
-            if len(entries) > Server.n_max_returned_entries:
+            if len(entries) > self.n_max_returned_entries:
                 raise TooManyProductsFoundError
         return sorted(entries, key=lambda e: e.price)
 
