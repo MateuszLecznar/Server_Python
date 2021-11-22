@@ -20,7 +20,7 @@ class ServerTest(unittest.TestCase):
         for server_type in server_types:
             server = server_type(products)
             with self.assertRaises(TooManyProductsFoundError):
-                entries = server.get_entries(3)
+                entries = server.get_entries(2)
 
 class ClientTest(unittest.TestCase):
     def test_total_price_for_normal_execution(self):
